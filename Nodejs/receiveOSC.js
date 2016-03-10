@@ -1,8 +1,8 @@
-// tested with vvvv, TouchOSC
+// tested with vvvv, TouchOSC, Unity3d
 
 var osc = require('osc-min');
 var udp = require("dgram");
-var inport = 8000;
+var inport = 9000; // data coming from Unity: 9000, from TouchOSC: 8000
 
 console.log("OSC listener running at http://localhost:" + inport);
 

@@ -51,9 +51,14 @@
   oscType: 'message'
 }
 
-// what Unity sends away:
+// what Unity sends away (printed in Unity):
 
 public void SendMessageToClient<T>(string clientId, string address, T value)
 OSCHandler.Instance.SendMessageToClient ("TouchOSC Bridge", "/1/fader1", 0.7f);
+
+// what Unity receives from TouchOSC (printed in Unity):
+SERVER: TouchOSC Server ADDRESS: /1/fader4 VALUE : 0.3682855
+UnityEngine.Debug:Log(Object)
+oscControl:Update() (at Assets/oscControl.cs:70)
 
 

@@ -31,10 +31,26 @@ public class oscControl : MonoBehaviour {
 	private Dictionary<string, ClientLog> clients;
 	private float randVal=0f;
 	public GameObject cube;
-	private String msg="";
+	// private String msg="";  // commented out because not used
+
+
+	public string fader1;
+	public int thisPort;
+	public string thatIpAddress;
+	public int thatPort;
+
+
+
 	// Script initialization
 	void Start() {	
-		OSCHandler.Instance.Init(); //init OSC
+
+		fader1 = "/1/fader1";
+		thisPort = 8000;
+		thatIpAddress = "127.0.0.1";
+		thatPort = 9000;
+
+		// public void Init(int thisPort, string thatIpAddress, int thatPort)
+		OSCHandler.Instance.Init(thisPort, thatIpAddress, thatPort); //init OSC
 		servers = new Dictionary<string, ServerLog>();
 		clients = new Dictionary<string,ClientLog> ();
 		cube = GameObject.Find ("Cube");
@@ -47,17 +63,17 @@ public class oscControl : MonoBehaviour {
 		
 		OSCHandler.Instance.UpdateLogs();
 
-		msg="0.1544944";
-		byte[] val = new byte[]{176,8,0};
+		// msg="0.1544944";  // commented out because not used
+		// byte[] val = new byte[]{176,8,0};  // commented out because not used
 
 		servers = OSCHandler.Instance.Servers;
 		clients = OSCHandler.Instance.Clients;
 		if (UnityEngine.Random.value < 0.01f) {
 			randVal = UnityEngine.Random.Range (0f, 0.7f);
-			OSCHandler.Instance.SendMessageToClient ("TouchOSC Bridge", "/1/fader1", randVal);
+			//OSCHandler.Instance.SendMessageToClient ("TouchOSC Bridge", "/1/fader1", randVal);
 			//OSCHandler.Instance.SendMessageToClient ("TouchOSC Bridge", "/1/fader2", randVal);
 			//OSCHandler.Instance.SendMessageToClient ("TouchOSC Bridge", "/1/fader3", randVal);
-			//OSCHandler.Instance.SendMessageToClient ("TouchOSC Bridge", "/1/fader4", randVal);
+			OSCHandler.Instance.SendMessageToClient ("TouchOSC Bridge", "/1/fader4", randVal);
 		}
 		OSCHandler.Instance.UpdateLogs();
 
@@ -66,6 +82,10 @@ public class oscControl : MonoBehaviour {
 			// show the last received from the log in the Debug console
 			if (item.Value.log.Count > 0) {
 				int lastPacketIndex = item.Value.packets.Count - 1;
+				Debug.Log ("________________________");
+				// Debug.Log ("item: " + item.ToString());
+				// foreach(var text in item.Value.packets [lastPacketIndex].Data){Debug.Log("foreach: "+ text.ToString());}
+
 					
 				UnityEngine.Debug.Log (String.Format ("SERVER: {0} ADDRESS: {1} VALUE : {2}", 
 					                                    item.Key, // Server name
@@ -74,8 +94,12 @@ public class oscControl : MonoBehaviour {
 					
 				//converts the values into MIDI to scale the cube
 				float tempVal = float.Parse (item.Value.packets [lastPacketIndex].Data [0].ToString ());
-				Debug.Log ("Print Fader: "+tempVal);
-				cube.transform.localScale = new Vector3 (tempVal, tempVal, tempVal);
+				// Debug.Log ("Print Fader: "+tempVal);
+				if (item.Value.packets [lastPacketIndex].Address == fader1) {
+					cube.transform.localScale = new Vector3 (tempVal, tempVal, tempVal);
+				} else {
+					Debug.Log ("No known fader touched!");
+				}
 			}
 		}
 			

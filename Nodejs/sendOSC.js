@@ -3,21 +3,21 @@
 var dgram = require("dgram"); // UDP
 var udp = dgram.createSocket("udp4");
 var osc = require('osc-min'); // OSC
-var ipaddress = "10.110.5.69"; // e.g. "localhost"
-var outport = 9000;
+var ipaddress = "localhost"; // e.g. "localhost" or "10.110.5.67"
+var outport = 8000; // data to Unity3d: 8000, to TouchOSC: 9000
 
 
 console.log("sending messages to " + ipaddress + ":" + outport);
 
 // Send a bunch of args every two seconds;
 
-var sendHeartbeat = function() {
+var sendInterval = function() {
     var buf;
     buf = osc.toBuffer({
                            address: "/1/fader1",
                            args: [
                                {
-                                   value: 0.7,
+                                   value: 0.1,
                                    type: "float"
                                }
                            ]
@@ -25,4 +25,4 @@ var sendHeartbeat = function() {
     return udp.send(buf, 0, buf.length, outport, ipaddress);
 };
 
-setInterval(sendHeartbeat, 2000);
+setInterval(sendInterval, 2000);

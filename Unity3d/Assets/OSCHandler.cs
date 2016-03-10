@@ -91,17 +91,17 @@ public class OSCHandler : MonoBehaviour
 	/// Initializes the OSC Handler.
 	/// Here you can create the OSC servers and clientes.
 	/// </summary>
-	public void Init()
+	public void Init(int thisPort, string thatIpAddress, int thatPort)
 	{
 		ipAddress = Network.player.ipAddress; //sets the ipAddress of the current machine running the Unity application
 		Debug.Log (ipAddress);
         //Initialize OSC clients (transmitters)
         //Example:		
-		CreateClient("TouchOSC Bridge", IPAddress.Parse("127.0.0.1"), 9000);
+		CreateClient("TouchOSC Bridge", IPAddress.Parse(thatIpAddress), thatPort);
 
         //Initialize OSC servers (listeners)
         //Example:
-		CreateServer ("TouchOSC Server", 8000);
+		CreateServer ("TouchOSC Server", thisPort);  // printed when fader moved
         //CreateServer("AndroidPhone", 6666);
 	}
 	
@@ -204,7 +204,7 @@ public class OSCHandler : MonoBehaviour
     void OnPacketReceived(OSCServer server, OSCPacket packet)
     {
 		Debug.Log ("packet received");
-		//Debug.Log (packet.Data[0].ToString());
+		Debug.Log ("packet.Data[0].ToString(): " + packet.Data[0].ToString());
     }
 	
 	/// <summary>
