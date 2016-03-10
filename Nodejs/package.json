@@ -1,0 +1,16 @@
+{
+  "name": "unity-osc",
+  "version": "0.0.1",
+  "description": "Making Unity speak to Node.js",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "FF",
+  "license": "ISC",
+  "dependencies": {
+    "node-osc": "^1.2.0",
+    "osc": "^2.0.3",
+    "osc-min": "^1.1.1"
+  }
+}

@@ -1,0 +1,59 @@
+// received from OSC Controller:
+
+{
+  address: '/note',
+  args: [
+    {
+      type: 'integer',
+      value: 1
+    },
+    {
+      type: 'integer',
+      value: 75
+    },
+    {
+      type: 'float',
+      value: 0
+    },
+    {
+      type: 'integer',
+      value: 1
+    }
+  ],
+  oscType: 'message'
+}
+
+// received from TouchOSC
+
+{
+  address: '/1/fader1',
+  args: [
+    {
+      type: 'float',
+      value: 0.5727248787879944
+    }
+  ],
+  oscType: 'message'
+}
+
+
+
+// received from Unity
+
+{
+  address: '/1/fader1',
+  args: [
+    {
+      type: 'float',
+      value: 0.33910292387008667
+    }
+  ],
+  oscType: 'message'
+}
+
+// what Unity sends away:
+
+public void SendMessageToClient<T>(string clientId, string address, T value)
+OSCHandler.Instance.SendMessageToClient ("TouchOSC Bridge", "/1/fader1", 0.7f);
+
+
