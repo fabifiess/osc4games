@@ -83,15 +83,16 @@ public class oscControl : MonoBehaviour {
 			if (item.Value.log.Count > 0) {
 				int lastPacketIndex = item.Value.packets.Count - 1;
 				Debug.Log ("________________________");
-				// Debug.Log ("item: " + item.ToString());
-				// foreach(var text in item.Value.packets [lastPacketIndex].Data){Debug.Log("foreach: "+ text.ToString());}
 
 					
 				UnityEngine.Debug.Log (String.Format ("SERVER: {0} ADDRESS: {1} VALUE : {2}", 
 					                                    item.Key, // Server name
 					                                    item.Value.packets [lastPacketIndex].Address, // OSC address
 					                                    item.Value.packets [lastPacketIndex].Data [0].ToString ())); //First data value
-					
+
+
+
+
 				//converts the values into MIDI to scale the cube
 				float tempVal = float.Parse (item.Value.packets [lastPacketIndex].Data [0].ToString ());
 				// Debug.Log ("Print Fader: "+tempVal);

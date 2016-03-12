@@ -2,12 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/oscControl.cs">
     <Files>
-      <File FileName="Assets/oscControl.cs" Line="66" Column="6" />
-      <File FileName="Assets/OSCHandler.cs" Line="95" Column="3" />
-      <File FileName="Assets/OSCServer.cs" Line="31" Column="15" />
-      <File FileName="Assets/OSCClient.cs" Line="93" Column="16" />
-      <File FileName="Assets/OSCMessage.cs" Line="30" Column="23" />
-      <File FileName="Assets/OSCPacket.cs" Line="27" Column="2" />
+      <File FileName="Assets/oscControl.cs" Line="33" Column="22" />
+      <File FileName="Assets/Plugins/OSCMessage.cs" Line="108" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
